@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Produtos & Usuários</title>
+    </head>
+    <body>
+        <h1>Produtos e Usuários</h1>
+        <a href="/products/new">Crie um produto</a>
+        <section class="section">
+            <% if (products.length > 0) { %> 
+                <% products.forEach(product => {%>
+                    <h2 class="product-name"><%= product.name %></h2>
+                    <p class="description">Descrição: <%= product.description%></p>
+                    <p class="category">Categoria: <%= product.category%></p>
+                    <p class="price">Preço: R$<%= product.price%></p> 
+                    <p class="quantity">Quantidade: R$<%= product.quantity%></p> 
+
+                    <button><a href="/products/<%= product._id %>/edit">Editar</a></button>
+                    <form action="/products/<%= product._id%>/delete" method="POST">
+                        <button type="submit">Deletar</button>
+                    </form>
+                <% }) %> 
+                <% } else { %>
+                    <p>Não há produtos para exibir...</p>
+                <% } %>
+        </section>
+    </body>
+</html>
