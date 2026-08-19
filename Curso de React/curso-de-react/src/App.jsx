@@ -38,7 +38,7 @@ function App() {
   }
 
   function onDeleteTaskClick(taskId) {
-    const newTask = tasks.filter((task) => task.id != taskId);
+    const newTask = tasks.filter((task) => task.id !== taskId);
     setTasks(newTask);
   }
 

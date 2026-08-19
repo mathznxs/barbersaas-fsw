@@ -9,14 +9,14 @@ export default function AddTask({ onAddTaskSubmit }) {
         type="text"
         placeholder="Digite o título da tarefa"
         value={title}
-        onChange={() => setTitle(event.target.value)}
+        onChange={(event) => setTitle(event.target.value)}
         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
       />
       <input
         type="text"
         placeholder="Digite a descrição da tarefa"
         value={description}
-        onChange={() => setDescription(event.target.value)}
+        onChange={(event) => setDescription(event.target.value)}
         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
       />
 
@@ -24,14 +24,16 @@ export default function AddTask({ onAddTaskSubmit }) {
         type="submit"
         className="bg-slate-500 text-white rounded-md py-2 font-medium"
         onClick={() => {
-            onAddTaskSubmit(title, description)
-            setTitle("")
-            setDescription("")
+          if (!title.trim() || !description.trim()) {
+            return alert("Preencha o título e a descrição da tarefa")
+          }
+          onAddTaskSubmit(title, description);
+          setTitle("");
+          setDescription("");
         }}
-
       >
         Adicionar
       </button>
     </div>
   );
-} 
+}
